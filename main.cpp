@@ -31,8 +31,13 @@ int main(){
         int start, end, category;
 
         std::cin >> start >> end >> category;
-        movies.push_back({i, end - start, category});
 
-        
+        // add movie to vector movies
+        movies.push_back({i, end - start, category});
     }
+
+    // sort movies by time
+    std::sort(movies.begin(), movies.end(), compare_time);
+
+    
 }
