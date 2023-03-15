@@ -9,12 +9,6 @@
 // 14 15 3
 // 10 16 2
 // 10 14 1
-// 11 17 2
-// 11 14 3
-// 13 15 3
-// 14 15 1
-// 12 16 4
-// 12 13 4
 
 struct movie{
   int id;
@@ -30,7 +24,6 @@ struct movie{
 bool compare_time (movie a,movie b){
   return a.time > b.time;
 }
-
 
 int main(){
 
@@ -70,7 +63,6 @@ int main(){
       movies[i].id = i;
       movies[i].time = end - start;
       movies[i].category = category_id;
-   
     }
 
     // // output counter of movies per category
