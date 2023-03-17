@@ -1,17 +1,31 @@
-Quantidade de filmes assistidos: 10
-61 67 89 71 27 46 56 16 87 63 
-Id: 61 Duração: 2 Categoria: 3
-Id: 67 Duração: 1 Categoria: 1
-Id: 89 Duração: 3 Categoria: 1
-Id: 71 Duração: 3 Categoria: 2
-Id: 27 Duração: 3 Categoria: 3
-Id: 46 Duração: 3 Categoria: 3
-Id: 56 Duração: 2 Categoria: 4
-Id: 16 Duração: 1 Categoria: 3
-Id: 87 Duração: 3 Categoria: 4
-Id: 63 Duração: 2 Categoria: 4
+Quantidade de filmes assistidos: 24
+9512 2920 248 112 5419 676 1090 574 9687 7512 6137 3339 4167 9046 586 889 381 1745 869 4498 3421 568 450 5206 
+Id: 9512 Duração: 1 Categoria: 3
+Id: 2920 Duração: 1 Categoria: 5
+Id: 248 Duração: 1 Categoria: 4
+Id: 112 Duração: 1 Categoria: 6
+Id: 5419 Duração: 1 Categoria: 1
+Id: 676 Duração: 1 Categoria: 5
+Id: 1090 Duração: 1 Categoria: 5
+Id: 574 Duração: 1 Categoria: 6
+Id: 9687 Duração: 1 Categoria: 5
+Id: 7512 Duração: 1 Categoria: 7
+Id: 6137 Duração: 1 Categoria: 1
+Id: 3339 Duração: 1 Categoria: 2
+Id: 4167 Duração: 1 Categoria: 3
+Id: 9046 Duração: 1 Categoria: 1
+Id: 586 Duração: 1 Categoria: 6
+Id: 889 Duração: 1 Categoria: 3
+Id: 381 Duração: 1 Categoria: 2
+Id: 1745 Duração: 1 Categoria: 2
+Id: 869 Duração: 1 Categoria: 1
+Id: 4498 Duração: 1 Categoria: 1
+Id: 3421 Duração: 1 Categoria: 7
+Id: 568 Duração: 1 Categoria: 1
+Id: 450 Duração: 1 Categoria: 7
+Id: 5206 Duração: 1 Categoria: 7
 
 Quantidade de filmes por categoria:
-2 1 4 3 
+6 3 3 1 4 3 4 
 
-Total de horas na maratona: 23
+Total de horas na maratona: 24

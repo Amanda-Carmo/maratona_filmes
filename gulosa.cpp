@@ -122,7 +122,6 @@ int main(){
     cout << endl;
     cout << endl;
 
-
     cout << "Total de horas na maratona: " << total_time << endl;
 
     return 0;
