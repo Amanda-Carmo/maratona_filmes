@@ -7,11 +7,11 @@
 // 1 3 1 2 
 // 11 13 3
 // 14 15 3
-// 10 16 2
-// 10 14 1
 
 struct movie{
   int id;
+  int start_time;
+  int end_time;
   int time;
   int category;
 };
@@ -23,6 +23,10 @@ struct movie{
 // movies are sorted by time - biggest first
 bool compare_time (movie a,movie b){
   return a.time > b.time;
+}
+
+bool compare_start_time (movie a,movie b){
+  return a.start_time < b.start_time;
 }
 
 int main(){
@@ -49,6 +53,9 @@ int main(){
     // read movies and sort them by time
     std::vector<movie> movies(M);
 
+    // sort movies by start time
+    std::sort(movies.begin(), movies.end(), compare_start_time);
+
     for (int i = 0; i < M; i++){
       // calculate time using hour of beggining and end
       int start, end, category_id;
@@ -70,8 +77,8 @@ int main(){
     //   std::cout << counter[i] << " ";
     // }
 
-    // sort movies by time - biggest first
-    std::sort(movies.begin(), movies.end(), compare_time);
+    // sort movies by time
+    // std::sort(movies.begin(), movies.end(), compare_time);
 
     // output movies in order
     // for (int i = 0; i < M; i++){
@@ -86,6 +93,11 @@ int main(){
     int hours = 0;
 
     for (int i = 0; i < M; i++){
+      // for each start time, get the movie with the biggest time
+
+            
+
+
       // check if number of movies per category exceeded the limit
       // check if passed midnight
 
@@ -108,7 +120,7 @@ int main(){
 
     // output marathon
     for (int i = 0; i < marathon.size(); i++){
-      std::cout << marathon[i].id << " " << marathon[i].time << " " << marathon[i].category << std::endl;
+      std::cout << "Id: " << marathon[i].id << " " << marathon[i].time << " " << marathon[i].category << std::endl;
     }
 
 }
