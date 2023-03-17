@@ -1,6 +1,5 @@
 Quantidade de filmes assistidos: 10
 61 67 89 71 27 46 56 16 87 63 
-2 1 4 3 
 Id: 61 Duração: 2 Categoria: 3
 Id: 67 Duração: 1 Categoria: 1
 Id: 89 Duração: 3 Categoria: 1
@@ -11,4 +10,8 @@ Id: 56 Duração: 2 Categoria: 4
 Id: 16 Duração: 1 Categoria: 3
 Id: 87 Duração: 3 Categoria: 4
 Id: 63 Duração: 2 Categoria: 4
+
+Quantidade de filmes por categoria:
+2 1 4 3 
+
 Total de horas na maratona: 23

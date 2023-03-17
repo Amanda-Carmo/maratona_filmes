@@ -95,6 +95,18 @@ int main(){
     }
     cout << endl;
 
+    // Imprimir tempo total
+    int total_time = 0;
+    for(int i = 0; i < result.size(); i++){
+        total_time += result[i].time;
+        cout << "Id: " << result[i].id << " " << "Duração: "<< result[i].time << " " << "Categoria: " << result[i].category << endl;
+    }
+    
+    cout << endl;
+
+    cout << "Quantidade de filmes por categoria:";
+    cout << endl;
+
     // imprimir quantidade de filmes assistidos de cada categoria
     for(int i = 0; i < max_movies.size(); i++){
         int count = 0;
@@ -103,16 +115,14 @@ int main(){
                 count++;
             }
         }
+        
         cout << count << " ";
     }
+
+    cout << endl;
     cout << endl;
 
-    // Imprimir tempo total
-    int total_time = 0;
-    for(int i = 0; i < result.size(); i++){
-        total_time += result[i].time;
-        cout << "Id: " << result[i].id << " " << "Duração: "<< result[i].time << " " << "Categoria: " << result[i].category << endl;
-    }
+
     cout << "Total de horas na maratona: " << total_time << endl;
 
     return 0;
