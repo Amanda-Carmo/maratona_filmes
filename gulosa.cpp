@@ -126,3 +126,6 @@ int main(){
 
     return 0;
 }
+
+// g++ gulosa.cpp -o gulosa
+// ./gulosa < "input2.txt" > "out_marathon2.txt"

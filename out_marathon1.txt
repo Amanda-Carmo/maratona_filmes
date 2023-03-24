@@ -1,0 +1,13 @@
+Quantidade de filmes assistidos: 6
+10 15 11 3 7 2 
+Id: 10 Duração: 2 Categoria: 1
+Id: 15 Duração: 2 Categoria: 2
+Id: 11 Duração: 1 Categoria: 3
+Id: 3 Duração: 1 Categoria: 2
+Id: 7 Duração: 1 Categoria: 2
+Id: 2 Duração: 3 Categoria: 3
+
+Quantidade de filmes por categoria:
+1 3 2 
+
+Total de horas na maratona: 10
