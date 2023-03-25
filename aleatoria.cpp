@@ -4,6 +4,7 @@
 #include <random>
 #include <chrono>
 #include <cmath>
+#include <map>
 
 using namespace std;
 
@@ -15,11 +16,19 @@ struct movie{
     int category;
 };
 
+struct schedule{
+    int start_time;
+    vector<movie> movies;
+    int total_movies;
+};
+
+
 bool compare_movies(movie a, movie b){
     return a.start_time < b.start_time;
 }
 
-vector<movie> choose_movies(vector<movie> movies, vector<int> max_movies){
+
+vector<movie> choose_movies(vector<movie> movies, vector<int> max_movies, vector<schedule> schedules){
     // Gerador de números aleatórios
     default_random_engine generator; 
     // Semente para gerar números aleatórios
@@ -32,25 +41,31 @@ vector<movie> choose_movies(vector<movie> movies, vector<int> max_movies){
     // ordenar os filmes por horário de início
     sort(movies.begin(), movies.end(), compare_movies);
 
-    // Escolher o filme com menor duração para cada horário de início disponível 
-    for(int current_time = movies.front().start_time; current_time <= 23; current_time++){
+    // Percorrer schedules
+    for(int s = 0; s < schedules.size(); s++){
         // sortear números aleatórios entre 0 e 1
         uniform_real_distribution<double> distribution(0.0, 1.0);
         
         // cout << "Horário atual0: " << current_time << endl;
+        // para cada horário que um filme se inicia, next_movie é o filme com menor duração
         movie next_movie = {-1, -1, -1, -1, -1}; // Filme com menor duração para o horário atual
 
         // Aleatorização: colocar na maratona filme com mesmo horário de início, porém aleatório
 
+        // Percorrer filmes 
         for(int i = 0; i < movies.size(); i++){
-            // Se o filme tem o mesmo horário de início que o horário atual
+            // Se o filme tem o mesmo horário de início que o horário atual e o horário de fim é maior que o horário atual e o horário de início é menor que o horário de fim
             if(movies[i].start_time == current_time && movies[i].end_time > current_time && (movies[i].start_time < movies[i].end_time)){
                 
                 // 25% de chance de adicionar o filme na maratona de forma aleatoria, respeitando tempo                
                 if(distribution(generator) > 0.75){ 
-                    // gerar um número aleatório para índice do filme
-                    uniform_int_distribution<int> distribution(0, movies.size()-1); // distribuição uniforme entre 0 e o número de filmes
-                    int p = distribution(generator); // gera um número aleatório entre 0 e o número de filmes
+
+                    // ver quantos filmes com o mesmo horaio de inicio ja foram adicionados
+                    int n_movies = schedules[s].total_movies;                                    
+                                                          
+                    // pegar um filme aleatório que começa no horário atual e que ainda não foi assistido
+                    uniform_int_distribution<int> distribution(0, n_movies-1);
+                    int p = distribution(generator);
 
                     // Se o filme aleatório não foi assistido ainda
                     if(next_movie.id == -1){
@@ -103,6 +118,7 @@ vector<movie> choose_movies(vector<movie> movies, vector<int> max_movies){
 int main(){
     int n, m;
     cin >> n >> m;
+    int start_times;
 
     vector<int> max_movies(m);
     for(int i = 0; i < m; i++){
@@ -119,9 +135,39 @@ int main(){
 
         movies[i].time = movies[i].end_time - movies[i].start_time;
         movies[i].id = i + 1;
+
     }
 
-    vector<movie> result = choose_movies(movies, max_movies);
+    // vetor de horários de início
+    vector<schedule> schedules;
+
+    vector<movie> result = choose_movies(movies, max_movies, schedules);
+
+    // map para cada horário de início
+    map<int, vector<movie>> movies_by_start_time;
+
+    // Adicionar cada filme ao map
+    for (const auto& m : movies) {
+        movies_by_start_time[m.start_time].push_back(m);
+    }
+
+
+    // Para cada horário de início
+    for (const auto& [start_time, movies] : movies_by_start_time) {
+        schedules.push_back({start_time, movies, static_cast<int>(movies.size())});
+    }
+
+    
+    // Testando o output
+    // for (const auto& s : schedules) {
+    //     cout << "Schedule starting at " << s.start_time << ":" << endl;
+    //     cout << "    Total movies: " << s.total_movies << endl;
+    //     for (const auto& m : s.movies) {
+    //         cout << "    " << "ID: " << m.id << " - " << " Categoria " << m.category << endl;
+    //     }
+    // }
+
+    cout << endl;
 
     // Imprimir resultado
     cout << "Quantidade de filmes assistidos: "  << result.size() << endl;
