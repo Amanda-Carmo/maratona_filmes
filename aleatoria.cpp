@@ -38,10 +38,8 @@ vector<movie> choose_movies(vector<movie> movies, vector<int> max_movies, vector
     vector<int> current_movies(max_movies.size(), 0); // Quantidade atual de filmes assistidos de cada categoria
     int current_time = 0; // Hora atual
 
-    // ordenar os filmes por horário de início
-    // sort(movies.begin(), movies.end(), compare_movies);
 
-    // Percorrer schedules
+    // Percorrendo horários possíveis de início - das 0h às 23h
     for(current_time = 0; current_time <= 23; current_time++){
         // cout << "Schedule: " << s << endl;
 
@@ -51,38 +49,76 @@ vector<movie> choose_movies(vector<movie> movies, vector<int> max_movies, vector
         // cout << "Horário atual0: " << current_time << endl;
         // para cada horário que um filme se inicia, next_movie é o filme com menor duração
         movie next_movie = {-1, -1, -1, -1, -1}; // Filme com menor duração para o horário atual
-
+        cout << "Início: "<< schedules[current_time].start_time << " " << schedules[current_time].total_movies << endl;
+        
+        vector<movie> lista_movies = schedules[current_time].movies;
+        
         // Aleatorização: colocar na maratona filme com mesmo horário de início, porém aleatório
 
         // 25% de chance de adicionar o filme na maratona de forma aleatoria, respeitando tempo  
         if(distribution(generator) > 0.75){ 
-            cout << "Aleatorização" << endl;
 
             // Percorrer filmes do vetor schedules
             for(int i = 0; i < (schedules[current_time].total_movies); i++){
 
                 // Se o horário de fim é maior que o horário atual e o horário de início é menor que o horário de fim
-                if(schedules[current_time].movies[i].end_time > current_time && (schedules[current_time].movies[i].start_time < schedules[current_time].movies[i].start_time)){
-                    
+                if(schedules[current_time].movies[i].end_time > current_time && (schedules[current_time].movies[i].start_time < schedules[current_time].movies[i].end_time) && schedules[current_time].total_movies > 0){
                         // Quantidade de filmes que começam no horário atual
                         int n_movies = schedules[current_time].total_movies;                                    
                                                             
                         // pegar um filme aleatório que começa no horário atual e que ainda não foi assistido
                         uniform_int_distribution<int> distribution(0, n_movies-1);
                         int p = distribution(generator);
+                        
 
                         // Se o filme aleatório não foi assistido ainda
                         if(next_movie.id == -1){
-                            // Se a categoria do filme não atingiu o limite de filmes assistidos
-                            if(current_movies[movies[p].category-1] < max_movies[movies[p].category-1]){
-                                next_movie = movies[p];
 
-                            }                        
+                            // int n_movies_lis = lista_movies.size();
+                            
+                            // enquantoo limite de filmes na categoria for atingido, sortear outro filme
+                            while (current_movies[lista_movies[p].category-1] >= max_movies[lista_movies[p].category-1]){
+                                // garantir que o filme sorteado não seja o mesmo
+                                
+                                lista_movies.erase(lista_movies.begin() + p);
+                                // n_movies = lista_movies.size();
+
+                                // Se não houver mais filmes para sortear, sair do loop
+                                if(lista_movies.size() == 0){
+                                    break;
+                                }
+
+                                // Sortear outro filme
+                                if (lista_movies.size() == 1){
+                                    p = 0;
+                                }
+                                else{
+                                    distribution = uniform_int_distribution<int>(0, (lista_movies.size())-1);
+                                    p = distribution(generator);
+                                }                               
+                                
+
+                            }                            
+                            
+                            // p = distribution(generator);
+                            if (current_movies[lista_movies[p].category-1] < max_movies[lista_movies[p].category-1])
+                            {
+                                next_movie = lista_movies[p];
+                            }
+                            
+                            // next_movie = lista_movies[p];
+                            
+                            // // Se a categoria do filme não atingiu o limite de filmes assistidos
+                            // if(current_movies[schedules[current_time].movies[p].category-1] < max_movies[schedules[current_time].movies[p].category-1]){
+                                
+                            // }    
+
                         }                              
                 }        
             }
         }
 
+        // Caso contrário, pegar o filme com menor duração que ainda não foi assistido e que pertence a este horário
         else{
             // Percorrer filmes com horário de início igual ou maior ao horário atual
             // pegar filme com menor duração que ainda não foi assistido e que pertence a este horario
@@ -93,7 +129,7 @@ vector<movie> choose_movies(vector<movie> movies, vector<int> max_movies, vector
                         // Se a categoria do filme não atingiu o limite de filmes assistidos
                         if(current_movies[movies[i].category-1] < max_movies[movies[i].category-1]){
                             next_movie = movies[i];
-                        }                
+                        }
                     }
                 }       
             }
@@ -114,10 +150,6 @@ vector<movie> choose_movies(vector<movie> movies, vector<int> max_movies, vector
             // mostrar o filme escolhido
             // cout << "Filme escolhido: " << next_movie.id << " " << next_movie.start_time << " " << next_movie.end_time << " " << next_movie.time << " " << next_movie.category << endl;
             // cout << "Horário atual: " << current_time << endl;
-        }
-
-        else{
-            current_time++;
         }
     }
 
@@ -204,7 +236,7 @@ int main(){
     int total_time = 0;
     for(int i = 0; i < result.size(); i++){
         total_time += result[i].time;
-        cout << "Id: " << result[i].id << " " << "Duração: "<< result[i].time << " " << "Categoria: " << result[i].category << endl;
+        cout << "Id: " << result[i].id << " " << "Horário de Início: " << result[i].start_time << " " << "Duração: "<< result[i].time << " " << "Categoria: " << result[i].category << endl;
     }
     
     cout << endl;

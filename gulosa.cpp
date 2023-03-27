@@ -4,6 +4,10 @@
 
 using namespace std;
 
+// Implemente uma versão gulosa que ordena os filmes por hora de fim crescente e escolhe 
+// aqueles que começam primeiro e não conflitam com os filmes já escolhidos, 
+// além de verificar se há vagas disponíveis na categoria do filme.
+
 struct movie{
     int id;
     int start_time;
@@ -38,7 +42,8 @@ vector<movie> choose_movies(vector<movie> movies, vector<int> max_movies){
                     // Se a categoria do filme não atingiu o limite de filmes assistidos
                     if(current_movies[movies[i].category-1] < max_movies[movies[i].category-1]){
                         next_movie = movies[i];
-                    }                
+                    }   
+                                 
                 }
             }       
         }
@@ -99,7 +104,7 @@ int main(){
     int total_time = 0;
     for(int i = 0; i < result.size(); i++){
         total_time += result[i].time;
-        cout << "Id: " << result[i].id << " " << "Duração: "<< result[i].time << " " << "Categoria: " << result[i].category << endl;
+        cout << "Id: " << result[i].id << " " << "Horário de Início: " << result[i].start_time<< " " << "Duração: "<< result[i].time << " " << "Categoria: " << result[i].category << endl;
     }
     
     cout << endl;
