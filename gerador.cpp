@@ -1,7 +1,7 @@
 #include <chrono>
 #include <random>
 #include <fstream>
-#include <boost/random.hpp>
+// #include <boost/random.hpp>
 
 using namespace std;
 
@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
     int m = atoi(argv[2]);
 
     ofstream inputFile;
-    inputFile.open("input2.txt");
+    inputFile.open("input.txt");
     inputFile << n << " " << m << endl;
 
     unsigned seed = chrono::system_clock::now().time_since_epoch().count();

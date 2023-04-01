@@ -1,0 +1,18 @@
+
+Quantidade de filmes assistidos: 10
+61 67 33 17 22 3 56 16 98 36 
+Quantidade de filmes por categoria:
+2 1 4 3 
+
+Id: 61 Início: 0 Fim: 2 Duração: 2 Categoria: 3
+Id: 67 Início: 2 Fim: 3 Duração: 1 Categoria: 1
+Id: 33 Início: 3 Fim: 6 Duração: 3 Categoria: 2
+Id: 17 Início: 6 Fim: 9 Duração: 3 Categoria: 4
+Id: 22 Início: 9 Fim: 12 Duração: 3 Categoria: 4
+Id: 3 Início: 12 Fim: 15 Duração: 3 Categoria: 1
+Id: 56 Início: 16 Fim: 18 Duração: 2 Categoria: 4
+Id: 16 Início: 18 Fim: 19 Duração: 1 Categoria: 3
+Id: 98 Início: 19 Fim: 22 Duração: 3 Categoria: 3
+Id: 36 Início: 22 Fim: 23 Duração: 1 Categoria: 3
+
+Total de horas na maratona: 22
