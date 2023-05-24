@@ -26,12 +26,11 @@ vector<movie> findMaxMovies(vector<movie>& movies, vector<int>& max_movies, vect
         return vector<movie>();
     }
 
-    
+
 }
 
 
 int main(){
-
     // LEITURA DOS INPUTS
     // n = quantidade de filmes, m = quantidade de categorias
     int n, m;
