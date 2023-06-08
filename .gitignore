@@ -34,4 +34,5 @@
 # Inputs
 inputs/
 inputs.zip
+.clang-format
 
