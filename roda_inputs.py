@@ -38,22 +38,22 @@ def gera_grafico_n(busca):
 
     busca_tratada = busca.replace('./', '')
 
-    dict_v0 = {'tempo_exec': [], 'n_filmes': [x for x in range(2000, 61000, 1000)], 'quant_filmes': [], 'total_time': []}
-    dict_v1 = {'tempo_exec': [], 'n_filmes': [x for x in range(2000, 61000, 1000)], 'quant_filmes': [], 'total_time': []}
-    dict_v2 = {'tempo_exec': [], 'n_filmes': [x for x in range(2000, 61000, 1000)], 'quant_filmes': [], 'total_time': []}
-    dict_v3 = {'tempo_exec': [], 'n_filmes': [x for x in range(2000, 61000, 1000)], 'quant_filmes': [], 'total_time': []}
-    dict_v4 = {'tempo_exec': [], 'n_filmes': [x for x in range(2000, 61000, 1000)], 'quant_filmes': [], 'total_time': []}
+    dict_v0 = {'tempo_exec': [], 'n_filmes': [x for x in range(10, 55, 5)], 'quant_filmes': [], 'total_time': []}
+    dict_v1 = {'tempo_exec': [], 'n_filmes': [x for x in range(10, 55, 5)], 'quant_filmes': [], 'total_time': []}
+    dict_v2 = {'tempo_exec': [], 'n_filmes': [x for x in range(10, 55, 5)], 'quant_filmes': [], 'total_time': []}
+    dict_v3 = {'tempo_exec': [], 'n_filmes': [x for x in range(10, 55, 5)], 'quant_filmes': [], 'total_time': []}
+    dict_v4 = {'tempo_exec': [], 'n_filmes': [x for x in range(10, 55, 5)], 'quant_filmes': [], 'total_time': []}
 
     dict_list = [dict_v0, dict_v1, dict_v2, dict_v3, dict_v4]
     
     for n in range(10, 55, 5):
         for v in range(0, 5):
 
-            saida_tempo = roda_com_entrada(busca, f'inputs2/input-{v}-{n}-{5}.txt')
+            saida_tempo = roda_com_entrada(busca, f'inputs2/input-{v}-{n}-{3}.txt')
             
             dict_list[v]['tempo_exec'].append(saida_tempo[1])
-            # print(f'Versão {v} - Tempo de execução')
-            # print(dict_list[v]['tempo_exec'])
+            print(f'Versão {v} - Tempo de execução')
+            print(dict_list[v]['tempo_exec'])
 
             with open (saida_tempo[2], 'r') as f:
                 # Primeira linha do arquivo de saída
@@ -61,8 +61,8 @@ def gera_grafico_n(busca):
 
                 if line != '':
                     dict_list[v]['quant_filmes'].append(line)
-                # print(f'Versão {v} - Quantidade de filmes')
-                # print(dict_list[v]['quant_filmes'])
+                    print(f'Versão {v} - Quantidade de filmes')
+                    print(dict_list[v]['quant_filmes'])
 
                     # última linha do arquivo de saída
                     for line in f: 
@@ -70,6 +70,8 @@ def gera_grafico_n(busca):
 
                     line = line.replace('\n', '')
                     dict_list[v]['total_time'].append(line)
+                    print(f"Versão {v} - Tempo total")
+                    print(dict_list[v]['total_time'])
 
                 else:
                     dict_list[v]['quant_filmes'].append(0)
@@ -83,6 +85,9 @@ def gera_grafico_n(busca):
             soma += dict_list[j]['tempo_exec'][i]
         lis_tempo.append(soma/5)
 
+    print('Tempo de execução médio')
+    print(lis_tempo)
+
     # fazer média das quantidades de filmes
     lis_quant_filmes = []
     for i in range(0, len(dict_list[0]['quant_filmes'])):
@@ -90,6 +95,8 @@ def gera_grafico_n(busca):
         for j in range(0, 5):
             soma += int(dict_list[j]['quant_filmes'][i])
         lis_quant_filmes.append(soma/5)
+    print('Quantidade de filmes média')
+    print(lis_quant_filmes)    
 
     # fazer média dos tempos totais de tela
     lis_total_time = []
@@ -98,6 +105,8 @@ def gera_grafico_n(busca):
         for j in range(0, 5):
             soma += int(dict_list[j]['total_time'][i])
         lis_total_time.append(soma/5)
+    print('Tempo total de tela médio')
+    print(lis_total_time)
 
     lis_nfilmes = dict_list[0]['n_filmes']
 
@@ -146,7 +155,7 @@ def gera_grafico_m(busca):
 
     dict_list = [dict_v0, dict_v1, dict_v2, dict_v3, dict_v4]
 
-    for m in range(2, 7): # 
+    for m in range(2, 8): # 
         for v in range(0, 5):
             # print("Categorias: ", dict_list[v]['m_categorias'])
             saida_tempo = roda_com_entrada(busca, f'inputs2/input-{v}-30-{m}.txt')

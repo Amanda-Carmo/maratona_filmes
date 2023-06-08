@@ -72,7 +72,6 @@ vector<movie> choose_movies(vector<movie> movies, vector<int> max_movies){
 
 int main(){
     // LEITURA DOS INPUTS
-
     // n = quantidade de filmes, m = quantidade de categorias
     int n, m;
     cin >> n >> m;
@@ -84,7 +83,6 @@ int main(){
         cin >> max_movies[i];
     }
 
-    
     vector<movie> movies(n); // Vetor de filmes
 
     for(int i = 0; i < n; i++){
